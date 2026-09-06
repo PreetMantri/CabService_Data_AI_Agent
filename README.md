@@ -6,14 +6,14 @@ A multi-agent system built with **LangGraph** that lets you query and process a 
 
 ```
                     ┌───────────────┐
-                    │   Data Agent   │  (router)
+                    │   Data Agent  │  (router)
                     └───────┬───────┘
                             │
               ┌─────────────┴─────────────┐
               ▼                           ▼
       ┌───────────────┐           ┌───────────────┐
-      │  SQL Analyst   │           │  ETL Analyst   │
-      │    Agent       │           │    Agent       │
+      │  SQL Analyst  │           │  ETL Analyst  │
+      │    Agent      │           │    Agent      │
       └───────────────┘           └───────────────┘
 ```
 
