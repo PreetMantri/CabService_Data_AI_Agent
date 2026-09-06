@@ -139,14 +139,17 @@ response = data_agent.invoke({
 
 The router will detect this as a SQL-type question, hand it to the SQL Analyst Agent, which will inspect the live schema, generate a query, validate it's read-only, execute it, and return a plain-English answer.
 
-## Known Limitations / TODO
+## Running the Agent
 
-- `main.py` is currently empty — no unified CLI/API entry point yet; agents are invoked individually.
-- `utils/etl_tools.py`'s `execute_code` runs LLM-generated pandas code via `exec()` with no sandboxing — fine for local experimentation, **not safe for untrusted input or production use**.
-- LLM tier → model mapping in `utils/llm_pick.py` is hardcoded; double-check the Gemini model names are valid for your API access before running.
-- Connection details (`host`, `port`, `user`, `password`, `database`) are read directly from generic environment variable names — consider namespacing them (e.g. `DB_HOST`) if this ever runs alongside other services.
-- No test suite yet.
+`main.py` is the unified entry point — it wires up the Data Agent router and lets you chat with it from the command line:
 
-## License
+```bash
+python main.py
+```
 
-_Add a license (MIT/Apache-2.0/etc.) here._
+Example session:
+```
+> What are the different payment methods we have?
+[Data Agent routes to SQL Analyst → generates query → safety check → executes → answers]
+```
+
